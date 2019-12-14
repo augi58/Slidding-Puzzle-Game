@@ -1,6 +1,9 @@
 /**
  * Title
  */
+
+package game;
+
 public class Tile {
 
 private int rowPosition;

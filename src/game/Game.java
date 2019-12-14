@@ -1,7 +1,9 @@
+package game;
+
 import javax.swing.JFrame;
 
 /**
- * Game
+ * game.Game
  */
 public class Game {
 

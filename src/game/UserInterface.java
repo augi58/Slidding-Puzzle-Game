@@ -1,3 +1,5 @@
+package game;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -6,6 +8,7 @@ class UserInterface extends JPanel {
 
     private static final long serialVersionUID = 1L;
     private Canvas canvas;
+    private GameSettings settings = new GameSettings();
     private SlidingPuzzle puzzle = new SlidingPuzzle();
 
     public UserInterface() {
@@ -27,9 +30,9 @@ class UserInterface extends JPanel {
 
     class Canvas extends JPanel implements MouseListener {
         private static final long serialVersionUID = 1L;
-        private static final int gridSize = 3;
+        private final int gridSize = settings.getGridSize();
         
-        private static final int sizeOfCell = 100;
+        private final int sizeOfCell = settings.getSizeOfCell();
         private Font number;
         
         public Canvas() {
@@ -68,6 +71,12 @@ class UserInterface extends JPanel {
             }
             
             this.repaint();
+
+            if(puzzle.isGameOver())
+            {
+                JFrame message = new JFrame();
+                JOptionPane.showMessageDialog(message, "You Win!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
         
         public void mouseClicked (MouseEvent e) {}

@@ -1,18 +1,21 @@
+package game;
+
 /**
- * SlidingPuzzle
+ * game.SlidingPuzzle
  */
 public class SlidingPuzzle {
 
-    private static final int gridSize = 3;
+    private GameSettings settings = new GameSettings();
+    private final int gridSize = settings.getGridSize();
 
     private Tile[][] setOfTiles;
-    private Tile     emptySpace;
+    private Tile     emptySpace = null;
     
     public SlidingPuzzle() {
         this.setOfTiles = new Tile[gridSize][gridSize];
     }
     
-    String getFace(int row, int col) {
+    public String getFace(int row, int col) {
         return setOfTiles[row][col].getNumberOnTile();
     }
     
@@ -54,7 +57,7 @@ public class SlidingPuzzle {
         return r>=0 && r<gridSize && c>=0 && c<gridSize;
     }
     
-    private void swapTiles(int r1, int c1, int r2, int c2) {
+    public void swapTiles(int r1, int c1, int r2, int c2) {
         Tile temp = setOfTiles[r1][c1];
         setOfTiles[r1][c1] = setOfTiles[r2][c2];
         setOfTiles[r2][c2] = temp;
@@ -64,7 +67,7 @@ public class SlidingPuzzle {
         for (int r=0; r<gridSize; r++) {
             for (int c=0; c<gridSize; c++) {
                 Tile t = setOfTiles[r][c];
-                if(t.getRowPosition() == r && t.getColPosition() == c)
+                if(t.getRowPosition() != r && t.getColPosition() != c)
                 {
                     return false;
                 }
@@ -72,4 +75,9 @@ public class SlidingPuzzle {
         }
         return true;
     }
+
+    public Tile[][] getSetOfTiles() {
+        return setOfTiles;
+    }
+
 }
