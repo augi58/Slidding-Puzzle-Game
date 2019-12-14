@@ -1,4 +1,4 @@
-package game;
+package settings;
 
 public class GameSettings {
     private static final int gridSize = 3;

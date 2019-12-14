@@ -1,9 +1,11 @@
-package game;
+package main;
 
-import javax.swing.JFrame;
+import graphics.UserInterface;
+
+import javax.swing.*;
 
 /**
- * game.Game
+ * main.Game
  */
 public class Game {
 

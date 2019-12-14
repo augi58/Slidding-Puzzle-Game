@@ -1,5 +1,10 @@
 package game;
 
+import settings.GameSettings;
+import tiles.EmptyTile;
+import tiles.Tile;
+import tiles.TileWithGraphics;
+
 /**
  * game.SlidingPuzzle
  */
@@ -9,7 +14,6 @@ public class SlidingPuzzle {
     private final int gridSize = settings.getGridSize();
 
     private Tile[][] setOfTiles;
-    private Tile     emptySpace = null;
     
     public SlidingPuzzle() {
         this.setOfTiles = new Tile[gridSize][gridSize];
@@ -22,11 +26,10 @@ public class SlidingPuzzle {
     public void initTiles() {
         for (int r=0; r<gridSize; r++) {
             for (int c=0; c<gridSize; c++) {
-                setOfTiles[r][c] = new Tile(r, c, "" + (r*gridSize+c+1));
+                setOfTiles[r][c] = new TileWithGraphics(r, c, "" + (r * gridSize + c + 1));
             }
         }
-        emptySpace = setOfTiles[gridSize-1][gridSize-1];
-        emptySpace.setFace(null);
+        setOfTiles[gridSize - 1][gridSize - 1] = new EmptyTile(gridSize - 1, gridSize - 1);
     }
 
     public void shuffleTiles() {
@@ -46,7 +49,7 @@ public class SlidingPuzzle {
     private boolean isEmptyTile(int r, int c, int rdelta, int cdelta) {
         int rNeighbor = r + rdelta;
         int cNeighbor = c + cdelta;
-        if (withinBounds(rNeighbor, cNeighbor) && setOfTiles[rNeighbor][cNeighbor] == emptySpace) {
+        if (withinBounds(rNeighbor, cNeighbor) && setOfTiles[rNeighbor][cNeighbor] instanceof EmptyTile) {
             swapTiles(r, c, rNeighbor, cNeighbor);
             return true;
         }

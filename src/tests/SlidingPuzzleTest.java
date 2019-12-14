@@ -3,7 +3,7 @@ package tests;
 import game.SlidingPuzzle;
 import org.junit.Assert;
 import org.junit.Test;
-import game.Tile;
+import tiles.Tile;
 
 public class SlidingPuzzleTest {
 
@@ -11,7 +11,6 @@ public class SlidingPuzzleTest {
     public void shouldBeInitialised()
     {
         SlidingPuzzle game = new SlidingPuzzle();
-        game.initTiles();
         Assert.assertNotEquals(null, game.getSetOfTiles());
     }
 
@@ -37,7 +36,7 @@ public class SlidingPuzzleTest {
     public void shouldEndGame()
     {
         SlidingPuzzle game = new SlidingPuzzle();
-        game.initTiles();
+        game.initTiles(); // When initialized - tiles are in winning order
         Assert.assertTrue(game.isGameOver());
     }
 
